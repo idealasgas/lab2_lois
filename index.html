@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <link rel="stylesheet" href="style.css" type="text/css">
+	    
+	    <title>Лабораторная работа №1</title>
+	</head>
+	<body>
+
+		<div class="main">
+		    <input class="inputText" id="inputText" type="text" placeholder="Введите логическую формулу" required/>
+		    <button class="submitButton" id="checkButton" onclick="checkInconsistency()">Проверить на противоречивость</button>
+		    <a сlass="submitButton" href="quest.html">Проверить себя</a>
+		    <div id="container" style="color: aliceblue;" hidden>
+	            <h2>Таблица истинности:</h2>
+	            <table id="table" border="1" style="text-align: center;"></table>
+            </div>
+		</div>
+	    <script src="script.js"></script>
+	</body>
+</html>

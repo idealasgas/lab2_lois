@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <link rel="stylesheet" href="style.css" type="text/css">
+	    
+	    <title>Проверка знаний</title>
+	</head>
+	<body>
+	    <div id="questSection">
+	        <div id="question">
+	            <span class="title">Это противоречивая формула?</span>
+	            <span id="formula"></span>
+	        </div>
+
+	        <form id="answer">
+	        	<div class="option">
+	            	<input type="radio" id="true" name="radio" class="radio" checked="true">
+	            	<label for="true" id="trueLabel">да</label>
+	            </div>
+	            <div class="option">
+	            	<input type="radio" id="false" name="radio" class="radio">
+	            	<label for="false" id="falseLabel">нет</label>
+	            </div>
+	        </form>
+
+	        <button class="button" id="confirmButton" onclick="confirm()"><span>Подтвердить</span></button>
+	        <button class="button" id="nextButton" onclick="next()"><span>Следующий</span></button>
+	    </div>
+	    
+	    <div id="resultSection">
+	        <span class="title">Ваша оценка</span>
+	        <span id="score"></span>
+	        <button class="button"><a href="index.html">назад</a></button>
+	    </div>
+	    <script src="quest.js"></script>
+	</body>
+</html>

@@ -1,0 +1,126 @@
+body {
+    background-image: url(img/bg.jpg);
+}
+
+input[type=input]:invalid:not(:placeholder-shown) {
+    border-color: red;
+}
+
+input[type=input]:valid:not(:placeholder-shown) {
+    border-color: green;
+}
+
+.inputText{
+    padding: 5px 10px;
+    margin:210px 340px 0 410px;
+    height:35px;
+    width:550px;
+    font-size:20px;
+    border-radius:10px;
+    border-color: black;
+}
+
+.submitButton{
+    font-size:20px;
+    height:53px;
+    width:181px;
+    margin-top:25px;
+    background-color: #D3D3D3;
+    color: #333;
+    border-color: black;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    color: #fff;
+    background-color:black;
+}
+
+.info{
+    margin: 15% 0 -14% 0;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    position: absolute;
+    height: 98%;
+    width: 99%;
+}
+
+#question {
+    height: 200px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#formula {
+    margin: 5px auto;
+
+    display: block;
+    overflow: hidden;
+    outline: none;
+
+    color: azure;
+    border-radius: 2px;
+
+    font-size: 24px;
+    width: 580px;
+}
+
+
+#answer {
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.radio {
+    width: 24px;
+    height: 24px;
+}
+
+.button {
+    margin: 5px auto;
+  
+    display: block;
+    overflow: hidden;
+    outline: none;
+    
+    border: 3px solid #977bad;
+    border-radius: 2px;   
+}
+
+#resultSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#score {
+    font-size: 150px;
+    color: #977bad;
+}
+
+.title {
+    color: aliceblue;
+    font-size: xx-large;
+}
+
+#questSection {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 99%;
+    height: 98%;
+    justify-content: center;
+}
+
+.option {
+    font-size: x-large;
+}
