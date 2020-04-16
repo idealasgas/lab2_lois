@@ -15,16 +15,20 @@ let n = 1;
 function checkInconsistency() {
     var input = document.getElementById("inputText").value;
     let obj = calculateTableTruth(input);
-    console.log(obj)
-    if (countAnswer == n) {
+   
+    if (!checkWithRegularExpressionFormula(input)) {
+        alert('не формула')
+    } else if (obj.containsOnes === false) {
         alert('противоречивая');
     } else {
         alert('непротиворечивая');
     }
 
-    if (obj != null && checkWithRegularExpressionFormula(input)) {
-      printTableTruth(obj.table, obj.symbolSize);
-      document.getElementById("container").hidden = false;
+    if (obj instanceof Object && obj.table !== undefined && checkWithRegularExpressionFormula(input)) {
+        printTableTruth(obj.table, obj.symbolSize);
+        document.getElementById("container").hidden = false;
+    } else {
+        document.getElementById("container").hidden = true;
     }
 }
 
@@ -54,39 +58,51 @@ function calculateTableTruth(formula) {
 
     if(formula == '0') {
         countAnswer = 1;
-        return null;
+        return {containsOnes: false};
     }
 
     if(formula == '1') {
-        return null;
+        return {containsOnes: true};
     }
 
     if (formula == '') {
         return null;
     }
 
-    let answer = formula;
-    let symbolInFormula = calculateFormulaSymbols(formula).sort();
-    let sizeSymbolInFormula = symbolInFormula.length;
-    n = Math.pow(2, sizeSymbolInFormula);
+    if (formula.match(/[A-Z]/g) !== null) {
+        let answer = formula;
+        let symbolInFormula = calculateFormulaSymbols(formula).sort();
+        let sizeSymbolInFormula = symbolInFormula.length;
+        n = Math.pow(2, sizeSymbolInFormula);
 
-    let table = {};
-    for (let index = 0; index < n; index++) {
-        let inputParameters = calculateInputFormulaParameters(index, sizeSymbolInFormula);
-        let obj = createFormulaWithParameters(symbolInFormula, inputParameters);
+        let table = {};
+        for (let index = 0; index < n; index++) {
+            let inputParameters = calculateInputFormulaParameters(index, sizeSymbolInFormula);
+            let obj = createFormulaWithParameters(symbolInFormula, inputParameters);
 
-        obj[answer] = getAnswer(formula, obj);
-        table[index] = obj;
+            obj[answer] = getAnswer(formula, obj);
+            table[index] = obj;
 
-        if (obj[answer] == 0) {
-            countAnswer++;
+            if (obj[answer] == 0) {
+                countAnswer++;
+            }
         }
+        var vals = Object.keys(table).map(function(key) {
+            return table[key][Object.keys(table[key])[Object.keys(table[key]).length - 1]];
+        });
+        let containsOnes = false;
+        if (vals.includes('1')) {
+            containsOnes = true;
+        }
+        return  {
+            table: table,
+            symbolSize: sizeSymbolInFormula,
+            containsOnes: containsOnes
+        };
+    } else {
+        containsOnes = (calculateFormula(formula) === '1' ? true : false);
+        return {containsOnes: containsOnes};
     }
-
-    return  {
-        table: table,
-        symbolSize: sizeSymbolInFormula
-    }; 
 }
 
 function calculateFormulaSymbols(formula) {
